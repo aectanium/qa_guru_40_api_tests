@@ -2,9 +2,6 @@ package tests;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.get;
-//import static io.restassured.RestAssured.given;
-//import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
-//import static org.hamcrest.Matchers.hasKey;
 import static io.restassured.RestAssured.given;
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
 import static org.hamcrest.Matchers.hasKey;
@@ -17,7 +14,7 @@ public class StatusTests {
     public void totalAmountTest() {
         get("https://selenoid.autotests.cloud/status")
                 .then()
-                .body("total", is(51));
+                .body("total", is(5));
     }
     @Test
     public void totalAmountTest_withResponceLogs() {
@@ -104,6 +101,6 @@ public class StatusTests {
                 .log().all()
                 .statusCode(200)
                 .body(matchesJsonSchemaInClasspath("schemas/status_responce_schema.json"))
-                .body("total", is(5));;
+                .body("total", is(5));
     }
 }
