@@ -99,5 +99,4 @@ public class WdHubStatusTests extends TestBase {
                 .statusCode(401);
 
     }
-
 }
