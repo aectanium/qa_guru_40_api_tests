@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+}
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation(
+            "io.rest-assured:rest-assured:5.3.2",
+            "io.rest-assured:json-schema-validator:5.3.2",
+            "org.junit.jupiter:junit-jupiter:5.10.2"
+    )
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+    systemProperties(System.getProperties())
+    jvmArgs = [
+        '-Djava.locale.providers=COMPAT'
+    ]
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            showExceptions true
+            showCauses true
+            showStackTraces true
+            exceptionFormat "full"
+        }
+    }
+}
